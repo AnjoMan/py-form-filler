@@ -129,12 +129,12 @@ def get_fields(template='template.pdf', output='entries.csv', fields_save=None, 
     sample_row = {field['FieldName']: sampleValue(field,idx) for idx, field in enumerate(fields)}
     sample_row[formIDColumn] = "Sample"
 
-    with open("entries.csv", 'w') as fout:
+    with open(output, 'w') as fout:
         writer = csv.DictWriter(fout,lineterminator="\n", fieldnames=[el['FieldName'] for el in fields])
         writer.writeheader()
         writer.writerow(sample_row)
 
-    print("\tTable Template has been written to <'entries.csv'>")
+    print("\tTable Template has been written to <{}>".format(output))
 
     if sample:
         fileout = form_write(sample_row, template)
